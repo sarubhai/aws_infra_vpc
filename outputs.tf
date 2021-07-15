@@ -17,3 +17,8 @@ output "private_subnet_id" {
   value       = aws_subnet.private_subnet.*.id
   description = "The private subnets ID."
 }
+
+output "vpc_cidr_block" {
+  value       = var.vpc_cidr_block
+  description = "The address space that is used by the virtual network."
+}
