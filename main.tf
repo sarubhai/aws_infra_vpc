@@ -17,6 +17,7 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name  = "${var.prefix}-vpc"
     Owner = var.owner
+    "kubernetes.io/cluster/demo-eks" = "shared"
   }
 }
 
@@ -29,8 +30,10 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name  = "${var.prefix}-public-subnet-${count.index}"
-    Owner = var.owner
+    Name                             = "${var.prefix}-public-subnet-${count.index}"
+    Owner                            = var.owner
+    "kubernetes.io/cluster/demo-eks" = "shared"
+    "kubernetes.io/role/elb"         = "1"
   }
 }
 
@@ -42,8 +45,10 @@ resource "aws_subnet" "private_subnet" {
   availability_zone = element(keys(var.private_subnets), count.index)
 
   tags = {
-    Name  = "${var.prefix}-private-subnet-${count.index}"
-    Owner = var.owner
+    Name                              = "${var.prefix}-private-subnet-${count.index}"
+    Owner                             = var.owner
+    "kubernetes.io/cluster/demo-eks"  = "shared"
+    "kubernetes.io/role/internal-elb" = "1"
   }
 }
 
