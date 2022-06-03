@@ -32,7 +32,6 @@ resource "aws_subnet" "public_subnet" {
   tags = {
     Name                             = "${var.prefix}-public-subnet-${count.index}"
     Owner                            = var.owner
-    "kubernetes.io/cluster/demo-eks" = "shared"
     "kubernetes.io/role/elb"         = "1"
   }
 }
@@ -47,7 +46,6 @@ resource "aws_subnet" "private_subnet" {
   tags = {
     Name                              = "${var.prefix}-private-subnet-${count.index}"
     Owner                             = var.owner
-    "kubernetes.io/cluster/demo-eks"  = "shared"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
