@@ -17,7 +17,6 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name  = "${var.prefix}-vpc"
     Owner = var.owner
-    "kubernetes.io/cluster/demo-eks" = "shared"
   }
 }
 
